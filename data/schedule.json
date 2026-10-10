@@ -1,5 +1,14 @@
 [
  {
+  "id": "20261220-concert",
+  "d": "2026.12.20",
+  "c": "Concert",
+  "t": "【テスト】予定追加の動作確認",
+  "u": "",
+  "s": "",
+  "m": "14:00開演　テストホール"
+ },
+ {
   "id": "20261213-concert",
   "d": "2026.12.13",
   "c": "Concert",
@@ -18,6 +27,15 @@
   "m": "13:30開場 14:00開演　京都府中丹文化会館"
  },
  {
+  "id": "20261004-others",
+  "d": "2026.10.04",
+  "c": "Others",
+  "t": "MBIカルチャースクール「古筝・琵琶発表会」MBI懇親会",
+  "u": "https://wu-fang.com/schedule/others/20261004_con/",
+  "s": "",
+  "m": "10:45開場 11:00開演　長楽館（コーラル）"
+ },
+ {
   "id": "20261003-concert",
   "d": "2026.10.03",
   "c": "Concert",
@@ -25,6 +43,24 @@
   "u": "https://wu-fang.com/schedule/concert/20261003_con/",
   "s": "",
   "m": ""
+ },
+ {
+  "id": "20260921-media",
+  "d": "2026.09.21",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260921_media/",
+  "s": "",
+  "m": "13:00～13:15"
+ },
+ {
+  "id": "20260914-media",
+  "d": "2026.09.14",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260914_media/",
+  "s": "",
+  "m": "13:00～13:15"
  },
  {
   "id": "20260904-concert",
@@ -72,42 +108,6 @@
   "m": ""
  },
  {
-  "id": "20260412-concert",
-  "d": "2026.04.12",
-  "c": "Concert",
-  "t": "丹生官省符神社花盛祭～伍芳奉納演奏～",
-  "u": "https://wu-fang.com/schedule/concert/20260412_con/",
-  "s": "",
-  "m": ""
- },
- {
-  "id": "20260321-concert",
-  "d": "2026.03.21",
-  "c": "Concert",
-  "t": "孫文生誕160周年記念 移情閣コンサートvol.31 古筝×ピアノ～恋春風～ ウー・ファン＆和田美紀",
-  "u": "https://wu-fang.com/schedule/concert/20260126_con/",
-  "s": "定員となりました",
-  "m": ""
- },
- {
-  "id": "20260921-media",
-  "d": "2026.09.21",
-  "c": "Media",
-  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
-  "u": "https://wu-fang.com/schedule/media/20260921_media/",
-  "s": "",
-  "m": "13:00～13:15"
- },
- {
-  "id": "20260914-media",
-  "d": "2026.09.14",
-  "c": "Media",
-  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
-  "u": "https://wu-fang.com/schedule/media/20260914_media/",
-  "s": "",
-  "m": "13:00～13:15"
- },
- {
   "id": "20260427-media",
   "d": "2026.04.27",
   "c": "Media",
@@ -135,6 +135,24 @@
   "m": ""
  },
  {
+  "id": "20260412-concert",
+  "d": "2026.04.12",
+  "c": "Concert",
+  "t": "丹生官省符神社花盛祭～伍芳奉納演奏～",
+  "u": "https://wu-fang.com/schedule/concert/20260412_con/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260321-concert",
+  "d": "2026.03.21",
+  "c": "Concert",
+  "t": "孫文生誕160周年記念 移情閣コンサートvol.31 古筝×ピアノ～恋春風～ ウー・ファン＆和田美紀",
+  "u": "https://wu-fang.com/schedule/concert/20260126_con/",
+  "s": "定員となりました",
+  "m": ""
+ },
+ {
   "id": "20260208-media",
   "d": "2026.02.08",
   "c": "Media",
@@ -142,6 +160,15 @@
   "u": "https://wu-fang.com/schedule/media/20260208_media/",
   "s": "",
   "m": ""
+ },
+ {
+  "id": "20251210-others",
+  "d": "2025.12.10",
+  "c": "Others",
+  "t": "第一回伍芳（ウー・ファン）古筝クラスミニ発表会",
+  "u": "https://wu-fang.com/schedule/concert/20251210_con/",
+  "s": "",
+  "m": "15:00～16:30　横浜中華芸術学校 スタジオ"
  },
  {
   "id": "20251002-media",
@@ -178,24 +205,6 @@
   "u": "https://wu-fang.com/schedule/media/20240427_media/",
   "s": "",
   "m": ""
- },
- {
-  "id": "20261004-others",
-  "d": "2026.10.04",
-  "c": "Others",
-  "t": "MBIカルチャースクール「古筝・琵琶発表会」MBI懇親会",
-  "u": "https://wu-fang.com/schedule/others/20261004_con/",
-  "s": "",
-  "m": "10:45開場 11:00開演　長楽館（コーラル）"
- },
- {
-  "id": "20251210-others",
-  "d": "2025.12.10",
-  "c": "Others",
-  "t": "第一回伍芳（ウー・ファン）古筝クラスミニ発表会",
-  "u": "https://wu-fang.com/schedule/concert/20251210_con/",
-  "s": "",
-  "m": "15:00～16:30　横浜中華芸術学校 スタジオ"
  },
  {
   "id": "20220416-others",
