@@ -1,0 +1,314 @@
+[
+ {
+  "id": "20261213-concert",
+  "d": "2026.12.13",
+  "c": "Concert",
+  "t": "伍芳古筝教室第16回発表会",
+  "u": "https://wu-fang.com/schedule/concert/20261213_con/",
+  "s": "",
+  "m": "13:30開場 14:00開演　神戸芸術センター シューマンホール"
+ },
+ {
+  "id": "20261128-concert",
+  "d": "2026.11.28",
+  "c": "Concert",
+  "t": "ポップスコンサート ～音をめぐる秋のひととき～",
+  "u": "https://wu-fang.com/schedule/concert/20261128_con/",
+  "s": "",
+  "m": "13:30開場 14:00開演　京都府中丹文化会館",
+  "x": {
+   "rows": [
+    [
+     "日時",
+     "2026年11月28日（土）14:00開演（13:30開場）"
+    ],
+    [
+     "会場",
+     "京都府中丹文化会館（綾部市里町久田21-20）"
+    ],
+    [
+     "出演",
+     "陳曼麗（二胡）／ 伍芳（古筝）／ 中村伸（ピアノ）"
+    ],
+    [
+     "曲目",
+     "「主角」（テレビドラマ主題歌）／ JANE DOE（劇場版「チェンソーマン レゼ篇」エンディングテーマ）／ 思秋期 ／ 建昌月 ／ 映画「ニューシネマパラダイス」メドレー ほか"
+    ],
+    [
+     "入場料",
+     "自由席 1,000円（消費税込・当日300円増）"
+    ],
+    [
+     "チケット発売",
+     "8月30日（日）9:00〜"
+    ],
+    [
+     "主催",
+     "（公財）京都府中丹文化事業団"
+    ]
+   ],
+   "notes": [
+    "曲目は、都合により変更する場合があります。",
+    "未就学児のご入場はご遠慮ください。",
+    "駐車場に限りがございます。乗り合わせの上お越しください。",
+    "チケットのお問い合わせ・お申し込みは、会場（京都府中丹文化会館）へ。ネット予約はありません。"
+   ],
+   "imgs": [
+    "img/events/20261128-concert-front.jpg",
+    "img/events/20261128-concert-back.jpg"
+   ]
+  }
+ },
+ {
+  "id": "20261004-others",
+  "d": "2026.10.04",
+  "c": "Others",
+  "t": "MBIカルチャースクール「古筝・琵琶発表会」MBI懇親会",
+  "u": "https://wu-fang.com/schedule/others/20261004_con/",
+  "s": "",
+  "m": "10:45開場 11:00開演　長楽館（コーラル）"
+ },
+ {
+  "id": "20261003-concert",
+  "d": "2026.10.03",
+  "c": "Concert",
+  "t": "中国古筝と能「井筒」～千年の響きとともに～",
+  "u": "https://wu-fang.com/schedule/concert/20261003_con/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260921-media",
+  "d": "2026.09.21",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260921_media/",
+  "s": "",
+  "m": "13:00～13:15"
+ },
+ {
+  "id": "20260914-media",
+  "d": "2026.09.14",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260914_media/",
+  "s": "",
+  "m": "13:00～13:15"
+ },
+ {
+  "id": "20260904-concert",
+  "d": "2026.09.04",
+  "c": "Concert",
+  "t": "宝くじまちの音楽会 南こうせつ with ウーファン 心のうたコンサート in 高畠町",
+  "u": "https://wu-fang.com/schedule/concert/20260904_con/",
+  "s": "完売",
+  "m": ""
+ },
+ {
+  "id": "20260703-concert",
+  "d": "2026.07.03",
+  "c": "Concert",
+  "t": "宝くじまちの音楽会 南こうせつ with ウーファン 心のうたコンサート in 遠野市",
+  "u": "https://wu-fang.com/schedule/concert/20260703_con/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260604-concert",
+  "d": "2026.06.04",
+  "c": "Concert",
+  "t": "宝くじまちの音楽会 南こうせつ with ウーファン 心のうたコンサート in 黒部市",
+  "u": "https://wu-fang.com/schedule/concert/20260604_con/",
+  "s": "完売",
+  "m": ""
+ },
+ {
+  "id": "20260531-concert",
+  "d": "2026.05.31",
+  "c": "Concert",
+  "t": "中国古筝・伍芳（ウー・ファン）＆ 二胡・鳴尾牧子 DUO CONCERT ～二人のミューズが織りなす、珠玉のデュオ・コンサート～",
+  "u": "https://wu-fang.com/schedule/concert/20260531_con/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260523-concert",
+  "d": "2026.05.23",
+  "c": "Concert",
+  "t": "伍芳さんと行く新緑の京都とびわ湖大津館日帰りバスツアー ～古筝が奏でる午後のひととき～",
+  "u": "https://wu-fang.com/schedule/concert/20260523_con/",
+  "s": "キャンセル待ち",
+  "m": ""
+ },
+ {
+  "id": "20260427-media",
+  "d": "2026.04.27",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260427_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260420-media",
+  "d": "2026.04.20",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20260420_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260412-media",
+  "d": "2026.04.12",
+  "c": "Media",
+  "t": "朝日新聞デジタル記事に伍芳が紹介されました。",
+  "u": "https://wu-fang.com/schedule/media/20260412_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260412-concert",
+  "d": "2026.04.12",
+  "c": "Concert",
+  "t": "丹生官省符神社花盛祭～伍芳奉納演奏～",
+  "u": "https://wu-fang.com/schedule/concert/20260412_con/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20260321-concert",
+  "d": "2026.03.21",
+  "c": "Concert",
+  "t": "孫文生誕160周年記念 移情閣コンサートvol.31 古筝×ピアノ～恋春風～ ウー・ファン＆和田美紀",
+  "u": "https://wu-fang.com/schedule/concert/20260126_con/",
+  "s": "定員となりました",
+  "m": ""
+ },
+ {
+  "id": "20260208-media",
+  "d": "2026.02.08",
+  "c": "Media",
+  "t": "Japan漢服會 ～清音入耳・雅意入心【春和琴筝】发表会～",
+  "u": "https://wu-fang.com/schedule/media/20260208_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20251210-others",
+  "d": "2025.12.10",
+  "c": "Others",
+  "t": "第一回伍芳（ウー・ファン）古筝クラスミニ発表会",
+  "u": "https://wu-fang.com/schedule/concert/20251210_con/",
+  "s": "",
+  "m": "15:00～16:30　横浜中華芸術学校 スタジオ"
+ },
+ {
+  "id": "20251002-media",
+  "d": "2025.10.02",
+  "c": "Media",
+  "t": "神戸新聞記事「中国古箏の名手・伍芳さん招き35周年公演　姫路のギター・マンドリン合奏団体　26日、屈指の人気曲を共演」",
+  "u": "https://wu-fang.com/schedule/media/20251002_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20250922-media",
+  "d": "2025.09.22",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20250922_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20250915-media",
+  "d": "2025.09.15",
+  "c": "Media",
+  "t": "さくらFM「Sogawa Musicチャンネル」ゲスト出演",
+  "u": "https://wu-fang.com/schedule/media/20250915_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20240427-media",
+  "d": "2024.04.27",
+  "c": "Media",
+  "t": "NHK和歌山 NEWS WEBに記事が掲載されました",
+  "u": "https://wu-fang.com/schedule/media/20240427_media/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20220416-others",
+  "d": "2022.04.16",
+  "c": "Others",
+  "t": "2022年春～伍芳古筝教室～初心者向け体験レッスン開催！",
+  "u": "https://wu-fang.com/schedule/others/20220416_lesson/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20220331-others",
+  "d": "2022.03.31",
+  "c": "Others",
+  "t": "伍芳古筝教室グループ体験レッスン",
+  "u": "https://wu-fang.com/schedule/others/20220331_lesson/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20200229-others",
+  "d": "2020.02.29",
+  "c": "Others",
+  "t": "2020年2月29日 MBIカルチャースクール「2020年新年交流会」のご案内 ～伍芳がMBI講師として参加予定～",
+  "u": "https://wu-fang.com/schedule/others/20200229_newyearevent/",
+  "s": "中止",
+  "m": ""
+ },
+ {
+  "id": "20190905-others",
+  "d": "2019.09.05",
+  "c": "Others",
+  "t": "2019年9月5日(木)～8日(日) 中国古筝奏者伍芳（ウー・ファン）と行く上海・蘇州の旅 四日間",
+  "u": "https://wu-fang.com/schedule/others/20190905_wufangtrip/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20190801-others",
+  "d": "2019.08.01",
+  "c": "Others",
+  "t": "2019年8月1日～31日 第五回春日中学校美術作品展 ～ピースメッセージ展（平和の風）～ ウーファン作品出展決定！",
+  "u": "https://wu-fang.com/schedule/others/20190801_0830_kasuga/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20190715-others",
+  "d": "2019.07.15",
+  "c": "Others",
+  "t": "横浜中華芸術学校 伍芳古筝教室 体験レッスンのご案内",
+  "u": "https://wu-fang.com/schedule/others/20190604_lesson/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20190509-others",
+  "d": "2019.05.09",
+  "c": "Others",
+  "t": "Japan漢服會 伍芳（ウー・ファン）中国古筝教室開講",
+  "u": "https://wu-fang.com/schedule/others/20190509_japanhanfu/",
+  "s": "",
+  "m": ""
+ },
+ {
+  "id": "20190320-others",
+  "d": "2019.03.20",
+  "c": "Others",
+  "t": "伍芳（ウー・ファン）✿久野木史恵 KOTOKOTOユニット待望のファーストアルバム「KOTOKOTO FANTASIA～筝箏夢絃～」発売",
+  "u": "https://wu-fang.com/schedule/others/20190320_others/",
+  "s": "",
+  "m": ""
+ }
+]
