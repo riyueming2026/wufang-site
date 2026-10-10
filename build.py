@@ -5,7 +5,7 @@ ROOT = pathlib.Path(__file__).parent
 def build(out=None):
     data = json.loads((ROOT/'data/schedule.json').read_text(encoding='utf-8'))
     # 表示に必要な項目だけを埋め込む（id は管理用）
-    slim = [{k: x.get(k, '') for k in ('d','c','t','u','s','m')} for x in data]
+    slim = [{k: x.get(k, '') for k in ('id','d','c','t','u','s','m','x')} for x in data]
     tpl = (ROOT/'template.html').read_text(encoding='utf-8')
     assert '__SCHEDULE__' in tpl, 'template.html に __SCHEDULE__ がありません'
     html = tpl.replace('__SCHEDULE__', json.dumps(slim, ensure_ascii=False), 1)

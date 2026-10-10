@@ -97,6 +97,7 @@ section{padding:52px 0 0}
 .sec h2 span{font-size:11px;color:var(--gold);letter-spacing:.3em;font-family:var(--sans)}
 .card{background:var(--paper);border:1px solid var(--line);padding:20px 22px;border-radius:2px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+.evh h3{font-size:22px;line-height:1.6;margin:4px 0 18px}.dl{margin:0 0 16px;border-top:1px solid var(--line)}.dr{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.dr .dk{flex:0 0 92px;color:var(--red);font-size:14px}.dr .dv{flex:1;min-width:0}.nt{margin:0 0 20px;padding-left:1.2em;color:var(--sub);font-size:13px;line-height:1.9}.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:8px 0 10px}.fl img{width:100%;height:auto;display:block;border:1px solid var(--line)}@media(max-width:560px){.dr{flex-direction:column;gap:2px}}
 .ev{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .ev:first-child{padding-top:0}.date{font-family:var(--serif);min-width:92px;color:var(--red);font-size:17px}
 .tag{display:inline-block;font-size:11px;border:1px solid var(--gold);color:var(--gold);padding:0 8px;margin-right:6px;letter-spacing:.1em}
@@ -230,8 +231,10 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 <p class="sub" style="margin:0 0 14px"><a href="http://www.wu-fang.com/past_schedule/index.html" target="_blank" rel="noopener">過去のスケジュールはこちら</a>　／　<a href="http://www.wu-fang.com/diary/index.html" target="_blank" rel="noopener">過去の活動写真とメッセージ</a></p>
 <div class="filters" id="sfilters"></div>
 <div id="slist"></div>
-<p class="sub" style="margin-top:18px">※ 予定は日付をもとに「これからの予定」と「これまでの予定」へ自動で振り分けます。各項目のリンクは、現在のサイトの詳細ページです（新サイトでは詳細ページも作り直します）。</p></section>
+<p class="sub" style="margin-top:18px">※ 予定は日付をもとに「これからの予定」と「これまでの予定」へ自動で振り分けます。題名をタップすると詳細が開きます（詳細のない予定は、現在のサイトの詳細ページへ移動します）。</p></section>
 </div>
+
+<div class="view" id="v-event"><section class="sec"><div id="evbox"></div></section></div>
 
 <div class="view" id="v-contact">
 <section class="sec"><h2>お問い合わせ<span>CONTACT</span></h2>
@@ -302,6 +305,11 @@ const SCH=__SCHEDULE__;
 const today=new Date();today.setHours(0,0,0,0);
 const dt=x=>{const a=x.d.split(".");return new Date(+a[0],+a[1]-1,+a[2])};
 SCH.forEach(x=>{x.up=dt(x)>=today});
+const LK=x=>x.x?`<a href="#event/${x.id}"><b>${x.t}</b></a>`:x.u?`<a href="${x.u}" target="_blank" rel="noopener"><b>${x.t}</b></a>`:`<b>${x.t}</b>`;
+const drawEv=id=>{const x=SCH.find(v=>v.id===id),el=document.getElementById("evbox");
+if(!x){el.innerHTML=`<p>予定が見つかりませんでした。</p><p><a href="#schedule">スケジュールへ戻る</a></p>`;return}
+const d=x.x||{},rows=(d.rows||[]).map(r=>`<div class="dr"><div class="dk">${r[0]}</div><div class="dv">${r[1]}</div></div>`).join("");
+el.innerHTML=`<p class="sub" style="margin:0 0 6px"><a href="#schedule">← スケジュールへ戻る</a></p><div class="evh"><span class="tag">${x.c}</span>${x.s?`<span class="tag st">${x.s}</span>`:""}<div class="date" style="font-size:15px;margin-top:8px">${x.d}</div><h3>${x.t}</h3></div>${rows?`<div class="dl">${rows}</div>`:""}${(d.notes||[]).length?`<ul class="nt">${d.notes.map(n=>`<li>${n}</li>`).join("")}</ul>`:""}${(d.imgs||[]).length?`<div class="fl">${d.imgs.map(i=>`<a href="${i}" target="_blank" rel="noopener"><img src="${i}" alt="${x.t} チラシ" loading="lazy"></a>`).join("")}</div><p class="sub">画像をタップすると、大きく表示されます。</p>`:""}${x.u?`<p class="sub"><a href="${x.u}" target="_blank" rel="noopener">現在のサイトの詳細ページ</a></p>`:""}`;document.title=x.t+"｜伍芳"};
 const EVENTS=SCH.filter(x=>x.up&&x.c!=="Media").sort((a,b)=>dt(a)-dt(b)).slice(0,3);
 const NEWS=[
 {d:"2026.09.15",k:"Media",t:"さくらFM「Sogawa Musicチャンネル」ゲスト出演"},
@@ -317,12 +325,12 @@ const VENUES=[
 ];
 const FIL=[["all","すべて"],["kanto","関東（東京・横浜）"],["kansai","関西（神戸・宇治）"],["online","オンライン"]];
 const $=s=>document.querySelector(s);
-$("#events").innerHTML=EVENTS.length?EVENTS.map(e=>`<div class="ev"><div class="date">${e.d}</div><div><span class="tag">${e.c}</span>${e.u?`<a href="${e.u}" target="_blank" rel="noopener"><b>${e.t}</b></a>`:`<b>${e.t}</b>`}${e.m?`<div class="sub">${e.m}</div>`:""}</div></div>`).join(""):`<p class="sub" style="margin:0">現在、予定されている公演はありません。</p>`;
+$("#events").innerHTML=EVENTS.length?EVENTS.map(e=>`<div class="ev"><div class="date">${e.d}</div><div><span class="tag">${e.c}</span>${LK(e)}${e.m?`<div class="sub">${e.m}</div>`:""}</div></div>`).join(""):`<p class="sub" style="margin:0">現在、予定されている公演はありません。</p>`;
 $("#newslist").innerHTML=NEWS.map(e=>`<div class="ev"><div class="date" style="font-size:14px">${e.d}</div><div><span class="tag">${e.k}</span>${e.t}</div></div>`).join("");
 let sf="all";
 function drawS(){
 $("#sfilters").innerHTML=["all|すべて","Concert|Concert","Media|Media","Others|Others"].map(f=>{const q=f.split("|");return `<button class="${sf===q[0]?'on':''}" data-f="${q[0]}">${q[1]}</button>`}).join("");
-const row=x=>`<div class="ev"><div class="date" style="font-size:15px">${x.d}</div><div><span class="tag">${x.c}</span>${x.u?`<a href="${x.u}" target="_blank" rel="noopener"><b>${x.t}</b></a>`:`<b>${x.t}</b>`}${x.s&&(x.up||x.s==="中止")?`<span class="tag st">${x.s}</span>`:""}${x.m?`<div class="sub">${x.m}</div>`:""}</div></div>`;
+const row=x=>`<div class="ev"><div class="date" style="font-size:15px">${x.d}</div><div><span class="tag">${x.c}</span>${LK(x)}${x.s&&(x.up||x.s==="中止")?`<span class="tag st">${x.s}</span>`:""}${x.m?`<div class="sub">${x.m}</div>`:""}</div></div>`;
 const L=SCH.filter(x=>sf==="all"||x.c===sf);
 const up=L.filter(x=>x.up).sort((a,b)=>dt(a)-dt(b)),pa=L.filter(x=>!x.up).sort((a,b)=>dt(b)-dt(a));
 $("#slist").innerHTML=(up.length?`<h3 class="sh">これからの予定</h3><div class="card">${up.map(row).join("")}</div>`:`<p class="sub">この分類で、これからの予定はありません。</p>`)+`<h3 class="sh">これまでの予定</h3><div class="card">${pa.map(row).join("")}</div>`;
@@ -357,11 +365,11 @@ document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dat
 drawV();
 function route(){
 const h=(location.hash||"#home").slice(1);
-const view=h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
+const isEv=h.startsWith("event/");const view=isEv?"event":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
 document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+view));
-document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===view));
+document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===(view==="event"?"sched":view)));
 const t=document.getElementById(h);
-if(t&&h!=="home"&&h!=="lesson"&&h!=="discography"&&h!=="schedule"&&h!=="profile"&&h!=="shop"&&h!=="fanclub"&&h!=="contact")t.scrollIntoView();else window.scrollTo(0,0);
+if(isEv)drawEv(decodeURIComponent(h.slice(6)));if(!isEv&&t&&h!=="home"&&h!=="lesson"&&h!=="discography"&&h!=="schedule"&&h!=="profile"&&h!=="shop"&&h!=="fanclub"&&h!=="contact")t.scrollIntoView();else window.scrollTo(0,0);
 }
 document.querySelectorAll("a[data-go]").forEach(a=>a.addEventListener("click",e=>{
 const id=a.dataset.go;const lessonSide=id==="trial";

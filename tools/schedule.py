@@ -6,6 +6,7 @@
   schedule.py add --date 2026.12.20 --cat Concert --title "..." [--time "14:00開演　会場名"]
                   [--status 完売] [--url https://...] [--dry-run]
   schedule.py set ID [--date ..] [--cat ..] [--title ..] [--time ..] [--status ..] [--url ..] [--dry-run]
+  schedule.py set ID --detail-file 詳細.json [--dry-run]   # 詳細ページ（日時・会場・料金・チラシ画像）
   schedule.py remove ID [--dry-run]
   schedule.py validate
   schedule.py rollback
@@ -13,7 +14,7 @@
 変更を書き込む前に、history/ へ自動でバックアップします。
 入力に問題があるときは、何も書き込まずにエラーで止まります。
 """
-import argparse, datetime, json, pathlib, sys
+import argparse, datetime, json, pathlib, re, sys
 
 ROOT = pathlib.Path(__file__).resolve().parent.parent
 DATA = ROOT / 'data' / 'schedule.json'
@@ -33,6 +34,28 @@ def parse_date(s):
         return datetime.date(y, m, d)
     except Exception:
         return None
+
+
+PRIVATE = re.compile(r'(\d{2,4}[-－ー(（)）]\s*\d{2,4}[-－ー)）]\s*\d{3,4})|(\d{10,11})|([\w.+-]+@[\w-]+\.[\w.-]+)')
+
+
+def check_detail(x):
+    """詳細ページ x = {rows:[[項目,内容],..], notes:[..], imgs:[..]} の検査。"""
+    if not x:
+        return []
+    errs = []
+    if not isinstance(x, dict) or set(x) - {'rows', 'notes', 'imgs'}:
+        return ['詳細は rows / notes / imgs だけを持てます']
+    for r in x.get('rows', []):
+        if not (isinstance(r, list) and len(r) == 2 and all(isinstance(v, str) and v.strip() for v in r)):
+            errs.append(f'rows は [項目, 内容] の組です: {r!r}')
+    for t in x.get('notes', []) + [v for r in x.get('rows', []) if isinstance(r, list) for v in r]:
+        if isinstance(t, str) and PRIVATE.search(t):
+            errs.append(f'電話番号・メールアドレスは詳細に書けません（チラシ画像の中は可）: {t!r}')
+    for i in x.get('imgs', []):
+        if not (isinstance(i, str) and i.startswith('img/events/') and (ROOT / i).is_file()):
+            errs.append(f'画像が見つかりません（img/events/ に置いてください）: {i!r}')
+    return errs
 
 
 def check_entry(e, today=None, distance_warn=True):
@@ -56,6 +79,7 @@ def check_entry(e, today=None, distance_warn=True):
     u = e.get('u', '')
     if u and not (u.startswith('http://') or u.startswith('https://')):
         errs.append(f"URLは http:// か https:// で始めてください: {u!r}")
+    errs += check_detail(e.get('x'))
     if len(e.get('t', '')) > 140:
         warns.append('題名がとても長いです（140字超）')
     return errs, warns
@@ -111,6 +135,15 @@ def describe(e):
         s += f"\n    詳細: {e['m']}"
     if e.get('u'):
         s += f"\n    URL: {e['u']}"
+    if e.get('x'):
+        x = e['x']
+        s += '\n    詳細ページ: あり'
+        for k, v in x.get('rows', []):
+            s += f'\n      {k}: {v}'
+        for n in x.get('notes', []):
+            s += f'\n      ※ {n}'
+        for i in x.get('imgs', []):
+            s += f'\n      画像: {i}'
     return s
 
 
@@ -188,6 +221,8 @@ def cmd_set(a):
     for k, v in (('d', a.date), ('c', a.cat), ('t', a.title), ('m', a.time), ('s', a.status), ('u', a.url)):
         if v is not None:
             new[k] = v.strip() if k == 't' else v
+    if a.detail_file:
+        new['x'] = json.loads(pathlib.Path(a.detail_file).read_text(encoding='utf-8'))
     errs, warns = check_entry(new)
     if any(x is not tgt and (x['d'], x['c'], x['t']) == (new['d'], new['c'], new['t']) for x in data):
         errs.append('変更後の内容が、ほかの予定と重複します')
@@ -253,6 +288,7 @@ def main():
     s = sp.add_parser('set'); s.add_argument('id')
     for k in ('date', 'cat', 'title', 'time', 'status', 'url'):
         s.add_argument('--' + k)
+    s.add_argument('--detail-file')
     s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_set)
     s = sp.add_parser('remove'); s.add_argument('id'); s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_remove)
     a = p.parse_args()
