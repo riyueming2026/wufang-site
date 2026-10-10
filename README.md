@@ -19,3 +19,9 @@ python3 build.py                                                                
 ```
 
 詳しくは `docs/update-guide.md` を見てください。
+
+## テスト環境について
+
+いまは、本番（wu-fang.com）ではなく、テスト用の公開先で確認しています。
+`template.html` の `<meta name="robots" content="noindex, nofollow">` は、検索結果に載せないための指定です。
+**本番に切り替えるときは、この1行を削除してください。**
