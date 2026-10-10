@@ -64,7 +64,7 @@ python3 tools/schedule.py validate     # 全体の検査
 python3 build.py                       # index.html を作り直す
 ```
 
-そのあと、公開する（現在はプレビュー用の Artifact を更新。GitHub 連携後は push で Pages へ反映）。
+そのあと、公開する。変更したファイル（`data/schedule.json`、`index.html`、`history/`）を commit して、`main` へ push する。GitHub Pages が、数分で自動的に反映する。
 
 ### 5. 結果の報告と、巻き戻し
 
