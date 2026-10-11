@@ -98,7 +98,7 @@ section{padding:52px 0 0}
 .sec h2 span{font-size:11px;color:var(--gold);letter-spacing:.3em;font-family:var(--sans)}
 .card{background:var(--paper);border:1px solid var(--line);padding:20px 22px;border-radius:2px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-.evh h3{font-size:22px;line-height:1.6;margin:4px 0 18px}.dl{margin:0 0 16px;border-top:1px solid var(--line)}.dr{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.dr .dk{flex:0 0 92px;color:var(--red);font-size:14px}.dr .dv{flex:1;min-width:0}.nt{margin:0 0 20px;padding-left:1.2em;color:var(--sub);font-size:13px;line-height:1.9}.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:8px 0 10px}.fl img{width:100%;height:auto;display:block;border:1px solid var(--line)}@media(max-width:560px){.dr{flex-direction:column;gap:2px}}
+.evh h3{font-size:22px;line-height:1.6;margin:4px 0 18px}.dl{margin:0 0 16px;border-top:1px solid var(--line)}.dr{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.dr .dk{flex:0 0 92px;color:var(--red);font-size:14px}.dr .dv{flex:1;min-width:0}.nt{margin:0 0 20px;padding-left:1.2em;color:var(--sub);font-size:13px;line-height:1.9}.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:8px 0 10px}.fl img{width:100%;height:auto;display:block;border:1px solid var(--line)}@media(max-width:560px){.dr{flex-direction:column;gap:2px}.dr .dk{flex:none}}
 .ev{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .ev:first-child{padding-top:0}.date{font-family:var(--serif);min-width:92px;color:var(--red);font-size:17px}
 .tag{display:inline-block;font-size:11px;border:1px solid var(--gold);color:var(--gold);padding:0 8px;margin-right:6px;letter-spacing:.1em}
@@ -286,9 +286,36 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 
 <div class="view" id="v-shop">
 <section class="sec"><h2>グッズ<span>SHOP</span></h2>
-<p class="sub" style="margin:0 0 6px">ご購入は、Official Shopで承っています。</p>
+<p style="margin:0 0 6px">ご購入方法は、<a href="#purchase">「商品のご購入」のページ</a>をご覧ください。</p>
 <div id="shopcats"></div>
 <p class="sub" style="margin-top:22px">※ 価格はすべて税込です。品切れの商品は、在庫が戻り次第ご案内します。</p></section>
+</div>
+
+<div class="view" id="v-purchase">
+<section class="sec"><h2>商品のご購入<span>PURCHASE</span></h2>
+<p class="sub" style="margin:0 0 6px"><a href="#shop">← グッズへ戻る</a></p>
+<p style="margin:0 0 18px">販売ご利用についてです。よくお読みいただいてからのご注文を、よろしくお願いいたします。<br>（<a href="https://wu-fang.com/transactions/" target="_blank" rel="noopener">特定商取引法に基づく表記はこちら</a>をご覧ください。）</p>
+<h3 class="sh">ご注文方法について</h3>
+<div class="card"><p style="margin:0 0 12px">（商品金額×数量）＋送料を計算していただき、郵便局備え付けの「青い郵便振込用紙」でご送金ください。</p>
+<div class="dl" style="margin:0"><div class="dr"><div class="dk">振込先</div><div class="dv">口座番号：00970-8-164511</div></div>
+<div class="dr"><div class="dk">加入者名</div><div class="dv">Fang Fan Club</div></div>
+<div class="dr"><div class="dk">振込額</div><div class="dv">（商品金額×数量）＋送料＝合計金額</div></div>
+<div class="dr"><div class="dk">振込人欄</div><div class="dv">あなたの住所、氏名、電話番号、メールアドレス</div></div>
+<div class="dr"><div class="dk">通信欄</div><div class="dv">商品名と数量（例）写真集1冊</div></div></div>
+<p class="sub" style="margin:12px 0 0">※ 記入漏れなどがございますと、正常に処理ができないことがあり、発送が遅れることがありますのでご注意ください。</p></div>
+<h3 class="sh">送料について</h3>
+<div class="card"><div class="dl" style="margin:0"><div class="dr"><div class="dk">CD</div><div class="dv">「郵便」にて1枚300円　※2枚以上送料無料</div></div>
+<div class="dr"><div class="dk">キーホルダー＆ストラップ</div><div class="dv">「郵便」にて1個まで300円　※2個以上送料無料</div></div>
+<div class="dr"><div class="dk">書籍</div><div class="dv">「郵便」にて1冊まで300円　※2冊以上送料無料</div></div>
+<div class="dr"><div class="dk">ポストカード</div><div class="dv">「郵便」にて1セットまで300円　※2セット以上送料無料</div></div>
+<div class="dr"><div class="dk">クリアファイル</div><div class="dv">「郵便」にて1枚まで300円　※2枚以上送料無料</div></div></div>
+<p class="sub" style="margin:12px 0 0">※ それぞれのグッズを合わせてご購入いただく際の送料は無料です。</p></div>
+<h3 class="sh">商品の発送について</h3>
+<div class="card"><p style="margin:0">ご入金確認後2週間以内にお届けできるように、商品を発送いたします。<br>万が一遅れた場合は、下記のお問い合わせ先へご連絡ください。</p></div>
+<h3 class="sh">お問い合わせ先</h3>
+<div class="card"><p style="margin:0 0 10px">商品の在庫、送料等につきましては、下記にお問い合わせください。</p>
+<p style="margin:0">〒541-0047<br>大阪市中央区淡路町4-5-4　京音ビル<br>株式会社ムーヴ　エンタテインメント内<br>Fang.Fan.Club　Tel：06-4707-0330<br>E-mail：<a href="mailto:wufang-office@wu-fang.com">wufang-office@wu-fang.com</a></p>
+<p style="margin:12px 0 0"><a href="#contact">お問い合わせフォームはこちら</a></p></div></section>
 </div>
 
 <div class="view" id="v-disc">
@@ -369,9 +396,9 @@ document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dat
 drawV();
 function route(){
 const h=(location.hash||"#home").slice(1);
-const isEv=h.startsWith("event/");const view=isEv?"event":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
+const isEv=h.startsWith("event/");const view=isEv?"event":h==="purchase"?"purchase":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
 document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+view));
-document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===(view==="event"?"sched":view)));
+document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===(view==="event"?"sched":view==="purchase"?"shop":view)));
 const t=document.getElementById(h);
 if(isEv)drawEv(decodeURIComponent(h.slice(6)));if(!isEv&&t&&h!=="home"&&h!=="lesson"&&h!=="discography"&&h!=="schedule"&&h!=="profile"&&h!=="shop"&&h!=="fanclub"&&h!=="contact")t.scrollIntoView();else window.scrollTo(0,0);
 }
