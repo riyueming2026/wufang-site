@@ -95,3 +95,18 @@ python3 build.py                       # index.html を作り直す
 ```
 
 `id` は自動で付く。`s` は状況、`m` は詳細、`u` はリンク（空でもよい）。
+
+## 活動の記録（Gallery）の更新
+
+過去の活動を、写真と短い文で載せるページです。データは `data/gallery.json`、写真は `img/gallery/`。
+`tools/gallery.py` を通して更新します（直接編集しない）。流れは、スケジュールと同じです。
+
+1. 聞き取り: 日付（終わった日。未来は不可）、題名、短い文（400字以内・任意）、写真（1枚以上）。
+2. 不足の確認: 日付が曖昧なら質問する。写真に写っている人・場所を、推測で文に書かない。
+3. 確認: `python3 tools/gallery.py add --date 2026.10.03 --title "..." --text "..." --photo 写真1.jpg --photo 写真2.jpg --dry-run`
+   を本人に見せ、**OK が出てから** `--dry-run` を外す（写真は自動で縮小される）。
+4. `python3 tools/gallery.py validate` → `python3 build.py` → 検査 → `main` へ push。
+5. 間違えたら `python3 tools/gallery.py rollback` のあと `python3 build.py`。
+
+注意: 電話番号・メールアドレスを文に書かない。第三者の顔が大きく写る写真は、本人に確認する。
+記事が1件もないあいだは、メニューに Gallery が表示されない（1件入ると自動で表示）。

@@ -98,6 +98,7 @@ section{padding:52px 0 0}
 .sec h2 span{font-size:11px;color:var(--gold);letter-spacing:.3em;font-family:var(--sans)}
 .card{background:var(--paper);border:1px solid var(--line);padding:20px 22px;border-radius:2px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
+[hidden]{display:none!important}.gal{padding:20px 0;border-bottom:1px solid var(--line)}.gal h3{font-size:19px;line-height:1.6;margin:2px 0 0}.gph{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}.gph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
 .evh h3{font-size:22px;line-height:1.6;margin:4px 0 18px}.dl{margin:0 0 16px;border-top:1px solid var(--line)}.dr{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.dr .dk{flex:0 0 92px;color:var(--red);font-size:14px}.dr .dv{flex:1;min-width:0}.nt{margin:0 0 20px;padding-left:1.2em;color:var(--sub);font-size:13px;line-height:1.9}.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:8px 0 10px}.fl img{width:100%;height:auto;display:block;border:1px solid var(--line)}@media(max-width:560px){.dr{flex-direction:column;gap:2px}.dr .dk{flex:none}}
 .ev{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .ev:first-child{padding-top:0}.date{font-family:var(--serif);min-width:92px;color:var(--red);font-size:17px}
@@ -126,7 +127,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 <header><div class="bar">
 <a class="logo" href="#home">伍 芳<small>WU-FANG OFFICIAL</small></a>
 <nav>
-<a href="#home" data-n="home">Home</a><a href="#lesson" data-n="lesson">Lesson</a><a href="#schedule" data-n="sched">Schedule</a><a href="#profile" data-n="prof">Profile</a><a href="#discography" data-n="disc">Discography</a><a href="#shop" data-n="shop">Shop</a><a href="#fanclub" data-n="fan">Fan Club</a><a href="#contact" data-n="contact">Contact</a>
+<a href="#home" data-n="home">Home</a><a href="#lesson" data-n="lesson">Lesson</a><a href="#schedule" data-n="sched">Schedule</a><a href="#profile" data-n="prof">Profile</a><a href="#discography" data-n="disc">Discography</a><a href="#shop" data-n="shop">Shop</a><a href="#fanclub" data-n="fan">Fan Club</a><a href="#gallery" data-n="gal" id="navgal" hidden>Gallery</a><a href="#contact" data-n="contact">Contact</a>
 <a class="cta" href="#lesson" data-go="trial">体験レッスン</a>
 </nav></div></header>
 
@@ -291,6 +292,12 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 <p class="sub" style="margin-top:22px">※ 価格はすべて税込です。品切れの商品は、在庫が戻り次第ご案内します。</p></section>
 </div>
 
+<div class="view" id="v-gal">
+<section class="sec"><h2>活動の記録<span>GALLERY</span></h2>
+<p class="sub" style="margin:0 0 6px">これまでの演奏や活動を、写真とひとことでご紹介します。</p>
+<div id="gallist"></div></section>
+</div>
+
 <div class="view" id="v-purchase">
 <section class="sec"><h2>商品のご購入<span>PURCHASE</span></h2>
 <p class="sub" style="margin:0 0 6px"><a href="#shop">← グッズへ戻る</a></p>
@@ -341,6 +348,9 @@ const drawEv=id=>{const x=SCH.find(v=>v.id===id),el=document.getElementById("evb
 if(!x){el.innerHTML=`<p>予定が見つかりませんでした。</p><p><a href="#schedule">スケジュールへ戻る</a></p>`;return}
 const d=x.x||{},rows=(d.rows||[]).map(r=>`<div class="dr"><div class="dk">${r[0]}</div><div class="dv">${r[1]}</div></div>`).join("");
 el.innerHTML=`<p class="sub" style="margin:0 0 6px"><a href="#schedule">← スケジュールへ戻る</a></p><div class="evh"><span class="tag">${x.c}</span>${x.s?`<span class="tag st">${x.s}</span>`:""}<div class="date" style="font-size:15px;margin-top:8px">${x.d}</div><h3>${x.t}</h3></div>${rows?`<div class="dl">${rows}</div>`:""}${(d.notes||[]).length?`<ul class="nt">${d.notes.map(n=>`<li>${n}</li>`).join("")}</ul>`:""}${(d.imgs||[]).length?`<div class="fl">${d.imgs.map(i=>`<a href="${i}" target="_blank" rel="noopener"><img src="${i}" alt="${x.t} チラシ" loading="lazy"></a>`).join("")}</div><p class="sub">画像をタップすると、大きく表示されます。</p>`:""}${x.u?`<p class="sub"><a href="${x.u}" target="_blank" rel="noopener">現在のサイトの詳細ページ</a></p>`:""}`;document.title=x.t+"｜伍芳"};
+const GAL=[];
+if(GAL.length)document.getElementById("navgal").hidden=false;
+document.querySelector("#gallist").innerHTML=GAL.length?GAL.map(g=>`<article class="gal"><div class="date" style="font-size:14px">${g.d}</div><h3>${g.t}</h3>${g.x?`<p style="margin:6px 0 12px">${g.x}</p>`:""}<div class="gph">${g.imgs.map(i=>`<a href="${i}" target="_blank" rel="noopener"><img src="${i}" alt="${g.t}" loading="lazy"></a>`).join("")}</div></article>`).join(""):`<p class="sub">準備中です。</p>`;
 const EVENTS=SCH.filter(x=>x.up&&x.c!=="Media").sort((a,b)=>dt(a)-dt(b)).slice(0,3);
 const NEWS=[
 {d:"2026.09.15",k:"Media",t:"さくらFM「Sogawa Musicチャンネル」ゲスト出演"},
@@ -396,7 +406,7 @@ document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dat
 drawV();
 function route(){
 const h=(location.hash||"#home").slice(1);
-const isEv=h.startsWith("event/");const view=isEv?"event":h==="purchase"?"purchase":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
+const isEv=h.startsWith("event/");const view=isEv?"event":h==="purchase"?"purchase":h==="gallery"?"gal":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
 document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+view));
 document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===(view==="event"?"sched":view==="purchase"?"shop":view)));
 const t=document.getElementById(h);
