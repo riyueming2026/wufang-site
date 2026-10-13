@@ -6,6 +6,7 @@
   gallery.py add --date 2026.10.03 --title "題名" [--text "短い文"] --photo 写真1.jpg [--photo 写真2.jpg] [--dry-run]
   gallery.py set ID [--date ..] [--title ..] [--text ..] [--dry-run]
   gallery.py remove ID [--dry-run]
+  gallery.py import 一覧.json [--dry-run]   # 何件もまとめて追加（年ごとの取り込み用）
   gallery.py validate
   gallery.py rollback
 
@@ -40,10 +41,13 @@ def snapshot():
 
 def check_entry(e):
     errs = []
-    dt = parse_date(e.get('d', ''))
+    if re.fullmatch(r'\d{4}\.(0[1-9]|1[0-2])', e.get('d', '')):
+        dt = datetime.date(int(e['d'][:4]), int(e['d'][5:]), 1)   # 日付が月までしか分からない場合（例: 2014.01）
+    else:
+        dt = parse_date(e.get('d', ''))
     if not dt:
         errs.append(f"日付が正しくありません: {e.get('d')!r}（例: 2026.10.03）")
-    elif e['d'] != f"{dt.year}.{dt.month:02d}.{dt.day:02d}":
+    elif len(e['d']) == 10 and e['d'] != f"{dt.year}.{dt.month:02d}.{dt.day:02d}":
         errs.append(f"日付は YYYY.MM.DD（0埋め）で書いてください: {e['d']!r}")
     elif dt > datetime.date.today():
         errs.append('未来の日付です。活動の記録は、終わったことだけを載せます（予定は schedule.py へ）')
@@ -53,6 +57,12 @@ def check_entry(e):
         errs.append('本文は、短く（400字以内）してください')
     if PRIVATE.search(e.get('t', '') + e.get('x', '')):
         errs.append('電話番号・メールアドレスは書けません')
+    caps = e.get('caps')
+    if caps is not None and len(caps) != len(e.get('imgs', [])):
+        errs.append('写真ごとの文（caps）の数が、写真の数と合っていません')
+    for c in caps or []:
+        if len(c) > 200 or PRIVATE.search(c):
+            errs.append('写真ごとの文は200字以内で、電話番号・メールアドレスは書けません')
     for i in e.get('imgs', []):
         if not (i.startswith('img/gallery/') and (ROOT / i).is_file()):
             errs.append(f'写真が見つかりません: {i!r}')
@@ -71,8 +81,9 @@ def describe(e):
     s = f"{e['d']}{'（'+WD[dt.weekday()]+'）' if dt else ''}  {e['t']}"
     if e.get('x'):
         s += f"\n    文: {e['x']}"
-    for i in e.get('imgs', []):
-        s += f"\n    写真: {i}"
+    for n, i in enumerate(e.get('imgs', [])):
+        c = (e.get('caps') or [''] * (n + 1))[n]
+        s += f"\n    写真: {i}" + (f"  「{c}」" if c else '')
     return s
 
 
@@ -139,6 +150,46 @@ def cmd_add(a):
     print(f'✅ 追加しました（id: {nid} ／ バックアップ: history/{b}）')
 
 
+def cmd_import(a):
+    """まとめて追加。JSON: [{"date","title","text"?,"photos":[{"file","caption"?}]}]。写真は元のファイルから変換して保存。"""
+    spec = json.loads(pathlib.Path(a.spec).read_text(encoding='utf-8'))
+    base = pathlib.Path(a.spec).resolve().parent
+    data = load()
+    new, copies, errs = [], [], []
+    for item in spec:
+        nid = new_id(data + new, item['date'])
+        imgs, caps = [], []
+        for n, ph in enumerate(item['photos']):
+            src = (base / ph['file']).resolve()
+            if not src.is_file():
+                errs.append(f"写真が見つかりません: {ph['file']}")
+                continue
+            dst = f'img/gallery/{nid}-{n+1}.jpg'
+            imgs.append(dst); caps.append(ph.get('caption', '').strip()); copies.append((src, dst))
+        e = dict(id=nid, d=item['date'], t=item['title'].strip(), x=(item.get('text') or '').strip(), imgs=imgs)
+        if any(caps):
+            e['caps'] = caps
+        errs += [f"[{nid}] {m}" for m in check_entry({**e, 'imgs': []}) if '写真' not in m]
+        if not imgs:
+            errs.append(f'[{nid}] 写真が1枚もありません')
+        new.append(e)
+    if errs:
+        fail(errs)
+    for e in new:
+        print(describe(e))
+    print(f'\n合計 {len(new)} 件・写真 {len(copies)} 枚を追加します')
+    if a.dry_run:
+        print('（確認のみ。まだ書き込んでいません）')
+        return
+    b = snapshot()
+    PHOTOS.mkdir(parents=True, exist_ok=True)
+    for src, dst in copies:
+        convert(src, ROOT / dst)
+    data += new
+    save(data)
+    print(f'✅ {len(new)} 件を追加しました（バックアップ: history/{b}）')
+
+
 def cmd_set(a):
     data = load()
     tgt = next((x for x in data if x['id'] == a.id), None)
@@ -197,6 +248,7 @@ def main():
     sp.add_parser('rollback').set_defaults(f=cmd_rollback)
     s = sp.add_parser('add'); s.add_argument('--date', required=True); s.add_argument('--title', required=True)
     s.add_argument('--text'); s.add_argument('--photo', action='append', default=[]); s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_add)
+    s = sp.add_parser('import'); s.add_argument('spec'); s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_import)
     s = sp.add_parser('set'); s.add_argument('id'); s.add_argument('--date'); s.add_argument('--title'); s.add_argument('--text')
     s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_set)
     s = sp.add_parser('remove'); s.add_argument('id'); s.add_argument('--dry-run', action='store_true'); s.set_defaults(f=cmd_remove)

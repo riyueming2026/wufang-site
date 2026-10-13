@@ -98,7 +98,7 @@ section{padding:52px 0 0}
 .sec h2 span{font-size:11px;color:var(--gold);letter-spacing:.3em;font-family:var(--sans)}
 .card{background:var(--paper);border:1px solid var(--line);padding:20px 22px;border-radius:2px}
 .grid{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(250px,1fr))}
-[hidden]{display:none!important}.gal{padding:20px 0;border-bottom:1px solid var(--line)}.gal h3{font-size:19px;line-height:1.6;margin:2px 0 0}.gph{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}.gph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
+[hidden]{display:none!important}.gal{padding:20px 0;border-bottom:1px solid var(--line)}.gal h3{font-size:19px;line-height:1.6;margin:2px 0 0}.gph{margin-top:12px;display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:10px}.gy{display:flex;gap:8px;flex-wrap:wrap;margin:16px 0 4px}.gy a{font-size:14px;padding:7px 18px;border:1px solid var(--line);background:var(--paper);color:var(--ink);text-decoration:none;border-radius:2px}.gy a small{font-size:11px;margin-left:6px;opacity:.7}.gy a.on{background:linear-gradient(135deg,#a84c60,#d4706f);border-color:var(--red);color:#fff}.gm{font-family:var(--serif);font-size:20px;color:var(--red);margin:34px 0 0;padding-bottom:6px;border-bottom:2px solid var(--red)}.gm small{font-size:12px;margin-left:8px;opacity:.7}.gph figure{margin:0}.gph figcaption{font-size:12px;line-height:1.7;margin-top:5px;color:var(--ink)}.gph a{display:block}#lb{position:fixed;inset:0;background:rgba(40,20,26,.88);z-index:99;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:16px}#lb[hidden]{display:none}#lb img{max-width:100%;max-height:78vh;object-fit:contain}#lb p{color:#fff;font-size:14px;line-height:1.7;margin:12px 0 0;max-width:640px;text-align:center}#lb button{position:absolute;font:inherit;color:#fff;background:none;border:0;font-size:34px;cursor:pointer;padding:10px 16px}#lb .x{top:6px;right:6px}#lb .pv{left:4px;top:45%}#lb .nx{right:4px;top:45%}.gph img{width:100%;aspect-ratio:4/3;object-fit:cover;display:block;border:1px solid var(--line)}
 .evh h3{font-size:22px;line-height:1.6;margin:4px 0 18px}.dl{margin:0 0 16px;border-top:1px solid var(--line)}.dr{display:flex;gap:16px;padding:12px 0;border-bottom:1px solid var(--line)}.dr .dk{flex:0 0 92px;color:var(--red);font-size:14px}.dr .dv{flex:1;min-width:0}.nt{margin:0 0 20px;padding-left:1.2em;color:var(--sub);font-size:13px;line-height:1.9}.fl{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:8px 0 10px}.fl img{width:100%;height:auto;display:block;border:1px solid var(--line)}@media(max-width:560px){.dr{flex-direction:column;gap:2px}.dr .dk{flex:none}}
 .ev{display:flex;gap:16px;padding:14px 0;border-bottom:1px solid var(--line)}
 .ev:first-child{padding-top:0}.date{font-family:var(--serif);min-width:92px;color:var(--red);font-size:17px}
@@ -295,7 +295,8 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 <div class="view" id="v-gal">
 <section class="sec"><h2>活動の記録<span>GALLERY</span></h2>
 <p class="sub" style="margin:0 0 6px">これまでの演奏や活動を、写真とひとことでご紹介します。</p>
-<div id="gallist"></div></section>
+<div class="gy" id="galyears"></div><div id="gallist"></div></section>
+<div id="lb" hidden><button class="x" aria-label="閉じる">×</button><button class="pv" aria-label="前へ">‹</button><img alt=""><button class="nx" aria-label="次へ">›</button><p></p></div>
 </div>
 
 <div class="view" id="v-purchase">
@@ -350,7 +351,27 @@ const d=x.x||{},rows=(d.rows||[]).map(r=>`<div class="dr"><div class="dk">${r[0]
 el.innerHTML=`<p class="sub" style="margin:0 0 6px"><a href="#schedule">← スケジュールへ戻る</a></p><div class="evh"><span class="tag">${x.c}</span>${x.s?`<span class="tag st">${x.s}</span>`:""}<div class="date" style="font-size:15px;margin-top:8px">${x.d}</div><h3>${x.t}</h3></div>${rows?`<div class="dl">${rows}</div>`:""}${(d.notes||[]).length?`<ul class="nt">${d.notes.map(n=>`<li>${n}</li>`).join("")}</ul>`:""}${(d.imgs||[]).length?`<div class="fl">${d.imgs.map(i=>`<a href="${i}" target="_blank" rel="noopener"><img src="${i}" alt="${x.t} チラシ" loading="lazy"></a>`).join("")}</div><p class="sub">画像をタップすると、大きく表示されます。</p>`:""}${x.u?`<p class="sub"><a href="${x.u}" target="_blank" rel="noopener">現在のサイトの詳細ページ</a></p>`:""}`;document.title=x.t+"｜伍芳"};
 const GAL=__GALLERY__;
 if(GAL.length)document.getElementById("navgal").hidden=false;
-document.querySelector("#gallist").innerHTML=GAL.length?GAL.map(g=>`<article class="gal"><div class="date" style="font-size:14px">${g.d}</div><h3>${g.t}</h3>${g.x?`<p style="margin:6px 0 12px">${g.x}</p>`:""}<div class="gph">${g.imgs.map(i=>`<a href="${i}" target="_blank" rel="noopener"><img src="${i}" alt="${g.t}" loading="lazy"></a>`).join("")}</div></article>`).join(""):`<p class="sub">準備中です。</p>`;
+const GY=[...new Set(GAL.map(g=>g.d.slice(0,4)))];
+const fmtD=d=>{const p=d.split(".");return p[0]+"年"+(+p[1])+"月"+(p[2]?(+p[2])+"日":"")};
+let LBS=[],LBI=0;
+function drawGal(y){
+const el=document.querySelector("#gallist");
+if(!GAL.length){el.innerHTML=`<p class="sub">準備中です。</p>`;return}
+if(!GY.includes(y))y=GY[0];
+document.querySelector("#galyears").innerHTML=GY.map(k=>`<a href="#gallery/${k}" class="${k===y?"on":""}">${k}年<small>${GAL.filter(g=>g.d.startsWith(k)).length}</small></a>`).join("");
+let mo="",h="";LBS=[];
+GAL.filter(g=>g.d.startsWith(y)).forEach(g=>{
+const m=g.d.slice(5,7);
+if(m!==mo){mo=m;h+=`<h3 class="gm">${y}年${+m}月</h3>`}
+const ci=g.imgs.map((s,n)=>{LBS.push({s,c:(g.caps||[])[n]||"",t:g.t});return LBS.length-1});
+h+=`<article class="gal"><div class="date" style="font-size:14px">${fmtD(g.d)}</div><h3>${g.t}</h3>${g.x?`<p style="margin:6px 0 12px">${g.x}</p>`:""}<div class="gph">${g.imgs.map((s,n)=>`<figure><a href="${s}" data-lb="${ci[n]}"><img src="${s}" alt="${(g.caps||[])[n]||g.t}" loading="lazy"></a>${(g.caps||[])[n]?`<figcaption>${g.caps[n]}</figcaption>`:""}</figure>`).join("")}</div></article>`});
+el.innerHTML=h}
+function lbShow(i){const L=document.getElementById("lb");LBI=(i+LBS.length)%LBS.length;const o=LBS[LBI];L.querySelector("img").src=o.s;L.querySelector("p").textContent=o.c||o.t;L.hidden=false}
+document.querySelector("#gallist").addEventListener("click",e=>{const a=e.target.closest("a[data-lb]");if(a){e.preventDefault();lbShow(+a.dataset.lb)}});
+(function(){const L=document.getElementById("lb");
+L.querySelector(".x").onclick=()=>L.hidden=true;L.querySelector(".pv").onclick=()=>lbShow(LBI-1);L.querySelector(".nx").onclick=()=>lbShow(LBI+1);
+L.addEventListener("click",e=>{if(e.target===L)L.hidden=true});
+document.addEventListener("keydown",e=>{if(L.hidden)return;if(e.key==="Escape")L.hidden=true;if(e.key==="ArrowLeft")lbShow(LBI-1);if(e.key==="ArrowRight")lbShow(LBI+1)})})();
 const EVENTS=SCH.filter(x=>x.up&&x.c!=="Media").sort((a,b)=>dt(a)-dt(b)).slice(0,3);
 const NEWS=[
 {d:"2026.09.15",k:"Media",t:"さくらFM「Sogawa Musicチャンネル」ゲスト出演"},
@@ -406,11 +427,11 @@ document.querySelectorAll("#filters button").forEach(b=>b.onclick=()=>{cur=b.dat
 drawV();
 function route(){
 const h=(location.hash||"#home").slice(1);
-const isEv=h.startsWith("event/");const view=isEv?"event":h==="purchase"?"purchase":h==="gallery"?"gal":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
+const isEv=h.startsWith("event/");const view=isEv?"event":h==="purchase"?"purchase":h==="gallery"||h.startsWith("gallery/")?"gal":h==="lesson"||h==="trial"?"lesson":h==="discography"?"disc":h==="schedule"?"sched":h==="profile"?"prof":h==="shop"?"shop":h==="fanclub"?"fan":h==="contact"?"contact":"home";
 document.querySelectorAll(".view").forEach(x=>x.classList.toggle("on",x.id==="v-"+view));
 document.querySelectorAll("nav a[data-n]").forEach(a=>a.classList.toggle("on",a.dataset.n===(view==="event"?"sched":view==="purchase"?"shop":view)));
 const t=document.getElementById(h);
-if(isEv)drawEv(decodeURIComponent(h.slice(6)));if(!isEv&&t&&h!=="home"&&h!=="lesson"&&h!=="discography"&&h!=="schedule"&&h!=="profile"&&h!=="shop"&&h!=="fanclub"&&h!=="contact")t.scrollIntoView();else window.scrollTo(0,0);
+if(view==="gal")drawGal(h.slice(8));if(isEv)drawEv(decodeURIComponent(h.slice(6)));if(!isEv&&t&&h!=="home"&&h!=="lesson"&&h!=="discography"&&h!=="schedule"&&h!=="profile"&&h!=="shop"&&h!=="fanclub"&&h!=="contact")t.scrollIntoView();else window.scrollTo(0,0);
 }
 document.querySelectorAll("a[data-go]").forEach(a=>a.addEventListener("click",e=>{
 const id=a.dataset.go;const lessonSide=id==="trial";
