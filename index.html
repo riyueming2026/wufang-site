@@ -37,13 +37,14 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 header::after{content:"";display:block;height:6px;background:linear-gradient(90deg,rgba(168,76,96,0),rgba(168,76,96,.45) 22%,rgba(168,76,96,0) 78%) 0 0/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.28) 18%,rgba(180,88,106,0) 62%) 0 2px/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.16) 14%,rgba(180,88,106,0) 46%) 0 4px/100% 1px no-repeat}
 .bar{max-width:980px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:13px;font-family:var(--serif);text-decoration:none;color:var(--ink)}
-.logo .mark{width:40px;height:40px;flex:none;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
-.logo:hover .mark{transform:rotate(36deg)}
+.logo .mark{width:58px;height:auto;flex:none;overflow:visible}
+@keyframes pluck{0%{transform:translateY(0)}25%{transform:translateY(-.9px)}55%{transform:translateY(.7px)}80%{transform:translateY(-.3px)}100%{transform:translateY(0)}}
+.logo:hover .mark .st{animation:pluck .55s ease-out}
 .logo .nm{display:block;font-size:27px;font-weight:500;letter-spacing:.34em;line-height:1.1;margin-right:-.34em}
-.logo small{display:flex;align-items:center;gap:10px;margin-top:5px;font-size:10px;letter-spacing:.5em;color:var(--red);font-weight:500}
-.logo small::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--red),rgba(168,76,96,0))}
-@media(max-width:700px){.logo{gap:10px}.logo .mark{width:32px;height:32px}.logo .nm{font-size:22px}.logo small{margin-top:3px;font-size:9px;letter-spacing:.42em}.logo small::after{width:22px}}
-@media(prefers-reduced-motion:reduce){.logo .mark{transition:none}.logo:hover .mark{transform:none}}
+.logo small{display:flex;align-items:center;gap:10px;margin-top:5px;font-size:10px;letter-spacing:.4em;color:var(--red);font-weight:500}
+.logo small::after{content:"";width:24px;height:1px;background:linear-gradient(90deg,var(--red),rgba(168,76,96,0))}
+@media(max-width:700px){.logo{gap:10px}.logo .mark{width:50px}.logo .nm{font-size:22px}.logo small{margin-top:3px;font-size:9px;letter-spacing:.42em}.logo small::after{width:22px}}
+@media(prefers-reduced-motion:reduce){.logo:hover .mark .st{animation:none}}
 nav{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;align-items:center}
 nav a{text-decoration:none;color:var(--sub);padding:2px 0;border-bottom:1px solid transparent}
 nav a:hover,nav a.on{color:var(--ink);border-color:var(--red)}
@@ -152,7 +153,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 </head>
 <body>
 <header><div class="bar">
-<a class="logo" href="#home" aria-label="伍芳 公式サイト トップへ"><svg class="mark" viewBox="-20 -20 40 40" aria-hidden="true"><defs><radialGradient id="lgp" cx="0" cy="0" r="19" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f0a79c"/><stop offset="1" stop-color="#a84c60"/></radialGradient></defs><g fill="url(#lgp)" fill-opacity=".62"><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(0)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(72)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(144)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(216)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(288)"/></g><g fill="none" stroke="#fffafa" stroke-opacity=".55" stroke-width=".5"><path d="M0 -3 V-15"/><path d="M2.85 -.9 L14.3 -4.6"/><path d="M1.8 2.4 L8.8 12.1"/><path d="M-1.8 2.4 L-8.8 12.1"/><path d="M-2.85 -.9 L-14.3 -4.6"/></g><circle r="3.1" fill="#f6e2b8"/><circle r="1.2" fill="#b4586a"/></svg><span><span class="nm">伍 芳</span><small>WU-FANG OFFICIAL</small></span></a>
+<a class="logo" href="#home" aria-label="伍芳 公式サイト トップへ"><svg class="mark" viewBox="0 0 72 28" aria-hidden="true"><defs><linearGradient id="lgk" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#a84c60"/><stop offset="1" stop-color="#e68a7e"/></linearGradient></defs><path d="M3.5 6.6C26 2.6 50 2.4 69 5.2V22.8C50 25.6 26 25.4 3.5 21.4Z" fill="url(#lgk)" fill-opacity=".16" stroke="url(#lgk)" stroke-width="1.1" stroke-linejoin="round"/><path d="M3.5 6.6V21.4" stroke="#a84c60" stroke-width="2.4" stroke-linecap="round"/><path d="M69 5.2V22.8" stroke="#b4586a" stroke-width="2" stroke-linecap="round"/><g fill="none" stroke="#a84c60" stroke-width=".7" stroke-opacity=".85" stroke-linecap="round"><path class="st" d="M7.5 8.20H65" style="animation-delay:0ms"/><path class="st" d="M7.5 10.15H65" style="animation-delay:40ms"/><path class="st" d="M7.5 12.10H65" style="animation-delay:80ms"/><path class="st" d="M7.5 14.05H65" style="animation-delay:120ms"/><path class="st" d="M7.5 16.00H65" style="animation-delay:160ms"/><path class="st" d="M7.5 17.95H65" style="animation-delay:200ms"/><path class="st" d="M7.5 19.90H65" style="animation-delay:240ms"/></g><g fill="#f6e2b8" stroke="#b4586a" stroke-width=".35"><circle cx="50.0" cy="8.20" r="1.15"/><circle cx="45.4" cy="10.15" r="1.15"/><circle cx="40.8" cy="12.10" r="1.15"/><circle cx="36.2" cy="14.05" r="1.15"/><circle cx="31.6" cy="16.00" r="1.15"/><circle cx="27.0" cy="17.95" r="1.15"/><circle cx="22.4" cy="19.90" r="1.15"/></g></svg><span><span class="nm">伍 芳</span><small>WU-FANG OFFICIAL</small></span></a>
 <nav>
 <a href="#home" data-n="home">Home</a><a href="#lesson" data-n="lesson">Lesson</a><a href="#schedule" data-n="sched">Schedule</a><a href="#profile" data-n="prof">Profile</a><a href="#discography" data-n="disc">Discography</a><a href="#shop" data-n="shop">Shop</a><a href="#fanclub" data-n="fan">Fan Club</a><a href="#gallery" data-n="gal" id="navgal" hidden>Gallery</a><a href="#contact" data-n="contact">Contact</a>
 <a class="cta" href="#lesson" data-go="trial">体験レッスン</a>
