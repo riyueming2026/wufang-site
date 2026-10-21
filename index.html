@@ -34,9 +34,16 @@ body{margin:0;background:linear-gradient(180deg,#fdf6f4 0%,#f9e8e6 42%,#fbeee9 1
 a{color:inherit}
 h1,h2,h3{font-family:var(--serif);font-weight:600;letter-spacing:.08em;margin:0}
 header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 92%,transparent);backdrop-filter:blur(6px);border-bottom:1px solid var(--line)}
+header::after{content:"";display:block;height:6px;background:linear-gradient(90deg,rgba(168,76,96,0),rgba(168,76,96,.45) 22%,rgba(168,76,96,0) 78%) 0 0/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.28) 18%,rgba(180,88,106,0) 62%) 0 2px/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.16) 14%,rgba(180,88,106,0) 46%) 0 4px/100% 1px no-repeat}
 .bar{max-width:980px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
-.logo{font-family:var(--serif);font-size:20px;letter-spacing:.2em;text-decoration:none}
-.logo small{display:block;font-size:10px;letter-spacing:.3em;color:var(--sub)}
+.logo{display:flex;align-items:center;gap:13px;font-family:var(--serif);text-decoration:none;color:var(--ink)}
+.logo .mark{width:40px;height:40px;flex:none;transition:transform .9s cubic-bezier(.2,.7,.2,1)}
+.logo:hover .mark{transform:rotate(36deg)}
+.logo .nm{display:block;font-size:27px;font-weight:500;letter-spacing:.34em;line-height:1.1;margin-right:-.34em}
+.logo small{display:flex;align-items:center;gap:10px;margin-top:5px;font-size:10px;letter-spacing:.5em;color:var(--red);font-weight:500}
+.logo small::after{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--red),rgba(168,76,96,0))}
+@media(max-width:700px){.logo{gap:10px}.logo .mark{width:32px;height:32px}.logo .nm{font-size:22px}.logo small{margin-top:3px;font-size:9px;letter-spacing:.42em}.logo small::after{width:22px}}
+@media(prefers-reduced-motion:reduce){.logo .mark{transition:none}.logo:hover .mark{transform:none}}
 nav{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;align-items:center}
 nav a{text-decoration:none;color:var(--sub);padding:2px 0;border-bottom:1px solid transparent}
 nav a:hover,nav a.on{color:var(--ink);border-color:var(--red)}
@@ -145,7 +152,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 </head>
 <body>
 <header><div class="bar">
-<a class="logo" href="#home">伍 芳<small>WU-FANG OFFICIAL</small></a>
+<a class="logo" href="#home" aria-label="伍芳 公式サイト トップへ"><svg class="mark" viewBox="-20 -20 40 40" aria-hidden="true"><defs><radialGradient id="lgp" cx="0" cy="0" r="19" gradientUnits="userSpaceOnUse"><stop offset="0" stop-color="#f0a79c"/><stop offset="1" stop-color="#a84c60"/></radialGradient></defs><g fill="url(#lgp)" fill-opacity=".62"><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(0)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(72)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(144)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(216)"/><ellipse cx="0" cy="-9.6" rx="5.2" ry="9.2" transform="rotate(288)"/></g><g fill="none" stroke="#fffafa" stroke-opacity=".55" stroke-width=".5"><path d="M0 -3 V-15"/><path d="M2.85 -.9 L14.3 -4.6"/><path d="M1.8 2.4 L8.8 12.1"/><path d="M-1.8 2.4 L-8.8 12.1"/><path d="M-2.85 -.9 L-14.3 -4.6"/></g><circle r="3.1" fill="#f6e2b8"/><circle r="1.2" fill="#b4586a"/></svg><span><span class="nm">伍 芳</span><small>WU-FANG OFFICIAL</small></span></a>
 <nav>
 <a href="#home" data-n="home">Home</a><a href="#lesson" data-n="lesson">Lesson</a><a href="#schedule" data-n="sched">Schedule</a><a href="#profile" data-n="prof">Profile</a><a href="#discography" data-n="disc">Discography</a><a href="#shop" data-n="shop">Shop</a><a href="#fanclub" data-n="fan">Fan Club</a><a href="#gallery" data-n="gal" id="navgal" hidden>Gallery</a><a href="#contact" data-n="contact">Contact</a>
 <a class="cta" href="#lesson" data-go="trial">体験レッスン</a>
