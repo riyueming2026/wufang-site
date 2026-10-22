@@ -37,19 +37,13 @@ header{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:co
 header::after{content:"";display:block;height:6px;background:linear-gradient(90deg,rgba(168,76,96,0),rgba(168,76,96,.45) 22%,rgba(168,76,96,0) 78%) 0 0/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.28) 18%,rgba(180,88,106,0) 62%) 0 2px/100% 1px no-repeat,linear-gradient(90deg,rgba(180,88,106,0),rgba(180,88,106,.16) 14%,rgba(180,88,106,0) 46%) 0 4px/100% 1px no-repeat}
 .bar{max-width:980px;margin:auto;padding:12px 20px;display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
 .logo{display:flex;align-items:center;gap:13px;font-family:var(--serif);text-decoration:none;color:var(--ink)}
-.logo .mk{position:relative;display:block;width:76px;height:76px;margin:-8px 0;flex:none}
-.logo .mark{display:block;width:100%;height:100%;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
-.logo .hand{position:absolute;left:-17px;top:-2px;width:30px;height:36px;opacity:0;pointer-events:none;transform-origin:50% 92%;z-index:2;overflow:visible}
-@keyframes wave{0%{opacity:0;transform:scale(.3) rotate(0)}12%{opacity:1;transform:scale(1) rotate(0)}24%{opacity:1;transform:rotate(-24deg)}37%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}63%{transform:rotate(18deg)}76%{opacity:1;transform:rotate(-10deg)}88%{opacity:1;transform:rotate(0)}100%{opacity:0;transform:scale(.6) rotate(0)}}
-@keyframes wave2{0%{opacity:0;transform:scale(.3) rotate(0)}12%{opacity:1;transform:scale(1) rotate(0)}24%{opacity:1;transform:rotate(-24deg)}37%{transform:rotate(20deg)}50%{transform:rotate(-22deg)}63%{transform:rotate(18deg)}76%{opacity:1;transform:rotate(-10deg)}88%{opacity:1;transform:rotate(0)}100%{opacity:0;transform:scale(.6) rotate(0)}}
-.logo.hi .hand{animation:wave 1.8s ease-in-out .9s 1 both}
-.logo:hover .hand{animation:wave2 1.8s ease-in-out 0s 1 both}
+.logo .mark{display:block;width:76px;height:76px;margin:-8px 0;flex:none;transition:transform .5s cubic-bezier(.2,.7,.2,1)}
 .logo:hover .mark{transform:scale(1.06) rotate(-3deg)}
 .logo .nm{display:block;font-size:27px;font-weight:500;letter-spacing:.3em;line-height:1.1;margin-right:-.34em}
 .logo small{display:flex;align-items:center;gap:10px;margin-top:5px;font-size:10px;letter-spacing:.34em;color:var(--red);font-weight:500}
 .logo small::after{content:"";width:16px;height:1px;background:linear-gradient(90deg,var(--red),rgba(168,76,96,0))}
-@media(max-width:700px){.logo{gap:10px}.logo .mk{width:60px;height:60px;margin:-4px 0}.logo .hand{left:-12px;top:-2px;width:26px;height:31px}.logo .nm{font-size:22px}.logo small{margin-top:3px;font-size:9px;letter-spacing:.42em}.logo small::after{width:22px}}
-@media(prefers-reduced-motion:reduce){.logo .mark{transition:none}.logo:hover .mark{transform:none}.logo .hand{display:none}}
+@media(max-width:700px){.logo{gap:10px}.logo .mark{width:60px;height:60px;margin:-4px 0}.logo .nm{font-size:22px}.logo small{margin-top:3px;font-size:9px;letter-spacing:.42em}.logo small::after{width:22px}}
+@media(prefers-reduced-motion:reduce){.logo .mark{transition:none}.logo:hover .mark{transform:none}}
 nav{display:flex;gap:18px;flex-wrap:wrap;font-size:13px;align-items:center}
 nav a{text-decoration:none;color:var(--sub);padding:2px 0;border-bottom:1px solid transparent}
 nav a:hover,nav a.on{color:var(--ink);border-color:var(--red)}
@@ -159,7 +153,7 @@ footer{border-top:1px solid var(--line);text-align:center;padding:26px 20px;font
 </head>
 <body>
 <header><div class="bar">
-<a class="logo" href="#home" aria-label="伍芳 公式サイト トップへ"><span class="mk"><img class="mark" src="img/logo.webp" width="76" height="76" alt="" decoding="async"><svg class="hand" viewBox="0 0 32 38" aria-hidden="true"><g stroke="#e7a094" stroke-width=".9" stroke-linejoin="round" fill="#fde3d6"><rect x="8.4" y="6" width="3.8" height="15" rx="1.9"/><rect x="12.2" y="3" width="3.8" height="17" rx="1.9"/><rect x="16" y="5.4" width="3.8" height="15" rx="1.9"/><rect x="19.8" y="9.4" width="3.6" height="12" rx="1.8"/><rect x="2.6" y="17" width="3.8" height="10" rx="1.9" transform="rotate(-32 4.5 22)"/><rect x="7" y="14" width="16.4" height="16" rx="6.4"/></g><rect x="8.6" y="15" width="14" height="6" fill="#fde3d6"/><rect x="10" y="28.4" width="11.4" height="8" rx="3" fill="#f6a9b9" stroke="#e58aa0" stroke-width=".9"/><path d="M13.4 24.2q2.5 2.2 5 0" fill="none" stroke="#e58aa0" stroke-width=".9" stroke-linecap="round"/><g fill="none" stroke="#ec93a5" stroke-width="1" stroke-linecap="round"><path d="M27.4 8.6q2.6 3 .2 6.6"/><path d="M30 6q4.2 5 .4 11"/></g></svg></span><span><span class="nm">伍 芳</span><small>WU-FANG OFFICIAL</small></span></a>
+<a class="logo" href="#home" aria-label="伍芳 公式サイト トップへ"><img class="mark" src="img/logo.webp" width="76" height="76" alt="" decoding="async"><span><span class="nm">伍 芳</span><small>WU-FANG OFFICIAL</small></span></a>
 <nav>
 <a href="#home" data-n="home">Home</a><a href="#lesson" data-n="lesson">Lesson</a><a href="#schedule" data-n="sched">Schedule</a><a href="#profile" data-n="prof">Profile</a><a href="#discography" data-n="disc">Discography</a><a href="#shop" data-n="shop">Shop</a><a href="#fanclub" data-n="fan">Fan Club</a><a href="#gallery" data-n="gal" id="navgal" hidden>Gallery</a><a href="#contact" data-n="contact">Contact</a>
 <a class="cta" href="#lesson" data-go="trial">体験レッスン</a>
@@ -498,7 +492,6 @@ var load=function(){var x=Math.max(280,Math.min(500,Math.floor(w.clientWidth-18)
 f.src="https://www.facebook.com/plugins/page.php?href="+encodeURIComponent("https://www.facebook.com/WuFangOfficial/")+"&tabs=timeline&width="+x+"&height="+h+"&small_header=true&adapt_container_width=true&hide_cover=true&show_facepile=false";};
 var go=function(){if(started)return;started=true;load();var t;window.addEventListener("resize",function(){clearTimeout(t);t=setTimeout(load,400)})};
 if("IntersectionObserver" in window){new IntersectionObserver(function(e,o){if(e[0].isIntersecting){go();o.disconnect()}},{rootMargin:"300px"}).observe(w)}else go();})();
-(function(){try{var l=document.querySelector(".logo");if(!l||(window.matchMedia&&matchMedia("(prefers-reduced-motion:reduce)").matches))return;if(sessionStorage.getItem("wfHi"))return;sessionStorage.setItem("wfHi","1")}catch(e){}var l2=document.querySelector(".logo");if(l2)l2.classList.add("hi")})();
 </script>
 </body>
 </html>
